@@ -11,49 +11,78 @@ class MyDrawer extends StatelessWidget {
         backgroundColor: whiteColor,
         body: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Divider(),
               SizedBox(
                 height: 75,
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buildItem('Applications', Icons.widgets,
-                          () => Get.to(() => const AppliedData())),
-                      buildItem('Saved', Icons.beenhere,
-                          () => Get.to(() => const SavedData())),
-                      buildItem('Preference', Icons.tune,
-                          () => Get.to(() => Preferences())),
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    buildItem('Applications', Icons.widgets,
+                            () => Get.to(() => const AppliedData())),
+                    buildItem('Saved', Icons.beenhere,
+                            () => Get.to(() => const SavedData())),
+                    buildItem('Preference', Icons.tune,
+                            () => Get.to(() => Preferences())),
+                  ],
+                ),
               ),
               const Divider(),
-              ListView.builder(
-                itemCount: myProfileList.length,
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) => buildTile(
-                  onTap: myProfileList[index].onTap,
-                  title: myProfileList[index].label,
-                  iconData: myProfileList[index].image,
-                ),
-              ),
               Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '$appName\nUnit of Act T Connect (P) Ltd.',
-                    textAlign: TextAlign.center,
-                    style: xsmallText,
+                child: SingleChildScrollView(
+                  child: ListView.builder(
+                    itemCount: myProfileList.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      if (myProfileList[index].label == 'Policies') {
+                        return Theme(
+                          data: ThemeData(
+                            dividerColor: whiteColor,
+                            hintColor: primaryColor,
+                          ),
+                          child: ExpansionTile(
+                            title: Text(myProfileList[index].label, style: normalText,),
+                            childrenPadding: const EdgeInsets.only(left: 20),
+                            collapsedIconColor: Colors.grey,
+                            iconColor: primaryColor,
+                            leading: Icon(myProfileList[index].image, color: primaryColor),
+                            children: policyDropdownItems.map((item) {
+                              return ListTile(
+                                dense: true,
+                                title: Text(item.label, style: normalText),
+                                leading: Icon(item.image, color: primaryColor),
+                                onTap: item.onTap,
+                              );
+                            }).toList(),
+                          ),
+                        );
+                      } else {
+                        return buildTile(
+                          onTap: myProfileList[index].onTap,
+                          title: myProfileList[index].label,
+                          iconData: myProfileList[index].image,
+                        );
+                      }
+                    },
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  '$appName\nUnit of Act T Connect (P) Ltd.',
+                  textAlign: TextAlign.center,
+                  style: smallText,
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
 
   Widget buildItem(String title, IconData iconData, void Function() onTap) {
     return InkWell(
@@ -88,7 +117,7 @@ class MyDrawer extends StatelessWidget {
         iconData,
         color: primaryColor,
       ),
-      title: Text(title, style: smallText),
+      title: Text(title, style: normalText),
     );
   }
 }

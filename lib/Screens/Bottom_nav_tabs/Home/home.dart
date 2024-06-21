@@ -1,6 +1,7 @@
 import 'package:spires_app/Model/logo_model.dart';
 import 'package:spires_app/Screens/Resumes/cv_two.dart';
 import '../../../Constants/exports.dart';
+import '../Drawer/programs_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -30,7 +31,7 @@ class _HomeState extends State<Home> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              physics: const PageScrollPhysics(),
+              // physics: const PageScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,6 +40,97 @@ class _HomeState extends State<Home> {
                   FindYourJob(),
                   JobCard(),
                   InternshipCard(),
+                Container(
+                  color: primaryColor.withOpacity(0.2),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Our Programs",
+                              style: mediumBoldText,
+                            ),
+                            InkWell(
+                              onTap: () => Get.to(() => const ProgramsScreen()),
+                              child: Text(
+                                "View All",
+                                style: smallLightText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      CarouselSlider(
+                        items: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: ProgramCard(
+                              imageUrl:'assets/icons/1.png',
+                              title: 'SkillUp 1.0',
+                              description:
+                              'SkillUp Mississippi is a program that helps Mississippians get the skills they need to get a job. It is a partnership between the Mississippi Community College Board and the Mississippi Department of Employment Security.',
+                              onShare: () {
+                                // Handle share action
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: ProgramCard(
+                              imageUrl:'assets/icons/2.png',
+                              title: 'Interview Preparation',
+                              description:
+                              'MS Works is a program that helps Mississippians get the skills they need to get a job. It is a partnership between the Mississippi Community College Board and the Mississippi Department of Employment Security.',
+                              onShare: () {
+                                // Handle share action
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: ProgramCard(
+                              imageUrl:'assets/icons/3.png',
+                              title: 'Resume Workshop',
+                              description:
+                              'MS Works is a program that helps Mississippians get the skills they need to get a job. It is a partnership between the Mississippi Community College Board and the Mississippi Department of Employment Security.',
+                              onShare: () {
+                                // Handle share action
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: ProgramCard(
+                              imageUrl: 'assets/icons/jsdh.png',
+                              title: 'Coding Clubs',
+                              description: 'A coding clubs is a vibrant community where individuals of all skill levels come together to explore the fascinating world of programming. It\'s a place to learn new languages, build cool projects, share knowledge, and foster a passion for technology. Whether you\'re a beginner taking your first steps in code or an experienced developer seeking collaboration, a coding club offers a supportive and inspiring environment to grow your skills and connect with fellow enthusiasts.',
+                              onShare: () {
+                                // Handle share action
+                              },
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          // Add more ProgramCard widgets as needed
+                        ],
+                        options: CarouselOptions(
+                          height: 278,
+                          autoPlay: true,
+                          viewportFraction: 1,
+                          autoPlayInterval:
+                          const Duration(seconds: 8),
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                    ],
+                  ),
+                ),
                   const FeaturedCategory(),
                   buildTopCompanies(),
                   const Reviews(),
@@ -110,7 +202,8 @@ class _HomeState extends State<Home> {
                       ? Container()
                       : const Icon(Icons.location_on, color: primaryColor),
                   const SizedBox(width: 4),
-                  Obx(() => Expanded(child: Text(c.location.value, style: smallLightText))),
+                  Obx(() => Expanded(
+                      child: Text(c.location.value, style: smallLightText))),
                 ],
               ),
             ),
@@ -203,21 +296,28 @@ class _HomeState extends State<Home> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return loading; // Return a loading indicator while data is being fetched
                   } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}'); // Handle error state
-                  } else if (!snapshot.hasData || snapshot.data!.data!.isEmpty) {
+                    return Text(
+                        'Error: ${snapshot.error}'); // Handle error state
+                  } else if (!snapshot.hasData ||
+                      snapshot.data!.data!.isEmpty) {
                     return Text('No data available'); // Handle no data state
                   } else {
                     return Container(
-                      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+                      padding:
+                          const EdgeInsets.symmetric(vertical: defaultPadding),
                       height: 70,
                       child: CarouselSlider(
                         options: CarouselOptions(
                           height: 70,
                           viewportFraction: 0.38,
                           autoPlay: true, // Enable automatic sliding
-                          autoPlayInterval: Duration(seconds: 3), // Set the interval for sliding
-                          autoPlayAnimationDuration: Duration(milliseconds: 800), // Set the duration of sliding animation
-                          autoPlayCurve: Curves.fastOutSlowIn, // Set the animation curve
+                          autoPlayInterval: Duration(
+                              seconds: 3), // Set the interval for sliding
+                          autoPlayAnimationDuration: Duration(
+                              milliseconds:
+                                  800), // Set the duration of sliding animation
+                          autoPlayCurve:
+                              Curves.fastOutSlowIn, // Set the animation curve
                         ),
                         items: snapshot.data!.data!.map((logo) {
                           return CachedNetworkImage(

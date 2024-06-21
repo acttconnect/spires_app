@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:spires_app/Constants/exports.dart';
-import 'package:spires_app/Screens/programs_screen.dart';
+import 'package:spires_app/Screens/Bottom_nav_tabs/Drawer/programs_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
       theme: myTheme(),
       title: appName,
       debugShowCheckedModeBanner: false,
-      // home: autoLoginSystem(),
-      home: ProgramsScreen(),
+      home: autoLoginSystem(),
+      // home: const ProgramsScreen(),
     );
   }
 

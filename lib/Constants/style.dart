@@ -29,6 +29,12 @@ final normalText = TextStyle(
   fontFamily: fontFamily,
 );
 
+final xnormalText = TextStyle(
+  fontSize: normalTextsize,
+  color: blackColor,
+  fontFamily: fontFamily,
+);
+
 final normalBoldText = TextStyle(
   fontSize: normalTextsize,
   color: blackColor,

@@ -1,9 +1,10 @@
 import 'package:spires_app/Constants/exports.dart';
+import 'package:spires_app/Screens/Bottom_nav_tabs/Drawer/programs_screen.dart';
 import 'package:spires_app/Widgets/custom_dialog.dart';
 import '../Screens/Bottom_nav_tabs/Drawer/help_centre.dart';
 
 const appName = 'Spires Recruit';
-const baseUrl = 'https://spiresrecruit.com/';
+const baseUrl = 'https://www.spiresrecruit.com/';
 const apiUrl = '${baseUrl}api/';
 const imgPath = 'https://spiresrecruit.com/uploads/images';
 const defaultPadding = 12.00;
@@ -52,6 +53,7 @@ const loading = Center(
     ),
   ),
 );
+
 final loadShimmer = Container(
   margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
   height: 150,
@@ -171,20 +173,35 @@ shareInternships(int internshipId) {
   Share.share(
       'Checkout this job from Spires Recruit\nhttps://spiresrecruit.com/internship/$internshipId');
 }
+List<ListTileModel> policyDropdownItems = [
+  ListTileModel(
+    label: 'Safety Tips',
+    image: Icons.health_and_safety,
+    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/safety')),
+  ),
+  ListTileModel(
+    label: 'Terms & Condition',
+    image: Icons.gavel,
+    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/terms-of-use')),
+  ),
+  ListTileModel(
+    label: 'Privacy Policy',
+    image: Icons.policy,
+    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/privacy-policy')),
+  ),
+  ListTileModel(
+    label: 'Security & Fraud',
+    image: Icons.security,
+    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/security')),
+  ),
+  ListTileModel(
+    label: 'Beware of Fraudster',
+    image: Icons.compass_calibration,
+    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/beware-of-fraudsters')),
+  ),
+];
 
 List<ListTileModel> myProfileList = [
-  // ListTileModel(
-  //   label: 'Upgrade Now',
-  //   image: Icons.ios_share,
-  //   onTap: () => Get.to(() => const UpgradeNow(),
-  //       transition: Transition.rightToLeftWithFade),
-  // ),
-  // ListTileModel(
-  //   label: 'Search Citywise Jobs',
-  //   image: Icons.manage_search,
-  //   onTap: () =>
-  //       Get.to(() => ChooseCity(), transition: Transition.rightToLeftWithFade),
-  // ),
   ListTileModel(
     label: 'For Internship',
     image: Icons.work_history,
@@ -203,6 +220,11 @@ List<ListTileModel> myProfileList = [
       onTap: () => Get.to(() => const NotificationScreen(),
           transition: Transition.rightToLeftWithFade)),
   ListTileModel(
+      label: 'Programs',
+      image: Icons.widgets,
+      onTap: () => Get.to(() => const ProgramsScreen(),
+          transition: Transition.rightToLeftWithFade)),
+  ListTileModel(
       label: 'Help Centre',
       image: Icons.hub,
       onTap: () => Get.to(() => const HelpCentre(),
@@ -211,35 +233,14 @@ List<ListTileModel> myProfileList = [
       label: 'Discover Us',
       image: Icons.diversity_3,
       onTap: () => launchUrl(
-            Uri.parse('https://spiresrecruit.com/about-us'),
-          )),
+        Uri.parse('https://spiresrecruit.com/about-us'),
+      )),
+  // ExpansionTile for Policy
   ListTileModel(
-      label: 'Safety Tips',
-      image: Icons.health_and_safety,
-      onTap: () => launchUrl(
-            Uri.parse('https://spiresrecruit.com/safety'),
-          )),
-  ListTileModel(
-    label: 'Terms & Condition',
-    image: Icons.gavel,
-    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/terms-of-use')),
-  ),
-  ListTileModel(
-    label: 'Privacy Policy',
+    label: 'Policies',
     image: Icons.policy,
-    onTap: () =>
-        launchUrl(Uri.parse('https://spiresrecruit.com/privacy-policy')),
-  ),
-  ListTileModel(
-    label: 'Security & Fraud',
-    image: Icons.security,
-    onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/security')),
-  ),
-  ListTileModel(
-    label: 'Beware of Fraudster',
-    image: Icons.compass_calibration,
-    onTap: () =>
-        launchUrl(Uri.parse('https://spiresrecruit.com/beware-of-fraudsters')),
+    onTap: () {}, // No onTap for the parent tile
+    isDropdownItem: true,
   ),
   ListTileModel(
       label: 'Update Password',
