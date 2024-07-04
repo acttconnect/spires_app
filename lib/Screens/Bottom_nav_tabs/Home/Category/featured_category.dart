@@ -15,7 +15,11 @@ class FeaturedCategory extends StatelessWidget {
         children: [
           Text(
             "Featured Category",
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Poppins',
+            ),
           ),
           const SizedBox(height: 8.0),
           FutureBuilder<JobCategoryModel>(

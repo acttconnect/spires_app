@@ -20,7 +20,10 @@ class Reviews extends StatelessWidget {
                         defaultPadding, defaultPadding, defaultPadding, 0),
                     child: Text(
                       "Reviews",
-                      style: mediumBoldText,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   snapshot.data!.data!.isEmpty

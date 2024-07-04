@@ -14,12 +14,18 @@ class ProgramDetailTest extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String description;
+  final String benefits;
+  final List<Map<String, String>> faqs;
+  final String howItWorks;
 
   ProgramDetailTest({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
+    required this.benefits,
+    required this.howItWorks,
+    this.faqs = const [],
   });
 
   @override
@@ -134,7 +140,6 @@ class _ProgramDetailTestState extends State<ProgramDetailTest>
       imageUrl: "assets/images/logo.png",
     ),
   ];
-
   late TabController _tabController;
   late Razorpay _razorpay;
 
@@ -236,27 +241,145 @@ class _ProgramDetailTestState extends State<ProgramDetailTest>
           ],
         ),
       ),
-      body: TabBarView(
-        physics: PageScrollPhysics(),
-        controller: _tabController,
+      body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          Expanded(
+            child: TabBarView(
+              physics: PageScrollPhysics(),
+              controller: _tabController,
               children: [
-                Expanded(
-                  child: ListView(
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Image.asset(
-                        widget.imageUrl,
-                        height: 200,
-                        width: double.infinity,
-                        fit: BoxFit.fill,
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            Image.asset(
+                              widget.imageUrl,
+                              height: 200,
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              widget.title,
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              widget.description,
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Benefits: ',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              textAlign: TextAlign.start,
+                              widget.benefits,
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: 300.0,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.3,
+                      viewportFraction: 1,
+                      scrollPhysics: BouncingScrollPhysics(),
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                    ),
+                    items: testimonials.map((testimonial) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Card(
+                            elevation: 5,
+                            color: Colors.white,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    testimonial.imageUrl,
+                                    fit: BoxFit.cover,
+                                    height: 150,
+                                  ),
+                                  const SizedBox(height: 10.0),
+                                  Text(
+                                    testimonial.name,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                      height: 10.0
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Text(
+                                      testimonial.text,
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 16.0,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+                SingleChildScrollView(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        widget.title,
+                        'How it Works',
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 24,
@@ -266,302 +389,182 @@ class _ProgramDetailTestState extends State<ProgramDetailTest>
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        widget.description,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        'Benefits of the Program',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        '1. Lorem ipsum dolor sit amet,\n2. Aliquam vel risus ac nisl malesuada pellentesque. ices.\n3. Fusce consectetur tellus vel odio dapibus dignissim.\n4. Nullam et mi lacinia, ultricies ligula in, ultricies ligula in,\n5. ultricies ligula in. Vestibulum pharetra enim non varius feugiat. \n6. Nunc et metus sed nulla fringilla mattis a quis orci.',
+                        widget.howItWorks,
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 16,
-                          fontWeight: FontWeight.normal,
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
+                      if (widget.faqs.isNotEmpty)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'FAQs:',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                            SizedBox(height: 8),
+                            ...widget.faqs
+                                .map((faq) => _buildFAQ(
+                                      question: faq['question']!,
+                                      answer: faq['answer']!,
+                                    ))
+                                .toList(),
+                          ],
+                        )
                     ],
                   ),
                 ),
-                const SizedBox(height: 20), // Adjust spacing as needed
-                Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '₹834',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 80),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.fill,
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Talk to Us',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
-                          Text(
-                            '2 months plan',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
-                            ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'Email: example@gmail.com',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
                           ),
-                        ],
-                      ),
-                      Container(
-                        width: 100,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape:
-                                WidgetStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                        ),
+                        const Text(
+                          'Phone: +254 712 345 678',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const Text(
+                          'Website: www.example.com',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const Text(
+                          'Address: 1234 Example Street, Nairobi, Kenya',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 10.0),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Contact Us',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
                               ),
                             ),
-                            backgroundColor:
-                                WidgetStateProperty.all<Color>(primaryColor),
                           ),
-                          onPressed: openCheckout,
-                          child: const Text(
-                              textAlign: TextAlign.center,
-                              'Pay Now',
-                              style: TextStyle(color: Colors.white)),
                         ),
-                      ),
-                      // Container(
-                      //   width: 100,
-                      //   height: 50,
-                      //   child: ElevatedButton(
-                      //     style: ButtonStyle(
-                      //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                      //         RoundedRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(10),
-                      //         ),
-                      //       ),
-                      //       backgroundColor:
-                      //           WidgetStateProperty.all<Color>(primaryColor),
-                      //     ),
-                      //     onPressed: () {
-                      //       inquire(widget.title, MyController.id.toString());
-                      //     },
-                      //     child: const Text(
-                      //         textAlign: TextAlign.center,
-                      //         'Inquiry Now', style: TextStyle(color: Colors.white)),
-                      //   ),
-                      // )
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-            child: CarouselSlider(
-              options: CarouselOptions(
-                height: 300.0,
-                autoPlay: true,
-                viewportFraction: 1,
-                scrollPhysics: BouncingScrollPhysics(),
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-              ),
-              items: testimonials.map((testimonial) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Card(
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            testimonial.imageUrl,
-                            fit: BoxFit.cover,
-                            height: 150,
-                          ),
-                          const SizedBox(height: 10.0),
-                          Text(
-                            testimonial.name,
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(height: 10.0),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                            ),
-                            child: Text(
-                              testimonial.text,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 16.0,
-                                color: Colors.black,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-          ),
-          SingleChildScrollView(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSectionTitle('Introduction'),
-                _buildParagraph(
-                    'Welcome to Our Program! Learn how our program can benefit you.'),
-                _buildSectionTitle('How It Works'),
-                _buildStep(
-                  stepNumber: 1,
-                  title: 'Step 1: [Action]',
-                  description: '[Purpose]',
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:
+                  BorderRadius.circular(10), // Optional: for rounded corners
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3), // Shadow color
+                  spreadRadius: 2, // Spread radius
+                  blurRadius: 5, // Blur radius
+                  offset: Offset(0, 3), // Offset in x and y direction
                 ),
-                _buildStep(
-                  stepNumber: 2,
-                  title: 'Step 2: [Action]',
-                  description: '[Purpose]',
-                ),
-                _buildStep(
-                  stepNumber: 3,
-                  title: 'Step 3: [Action]',
-                  description: '[Purpose]',
-                ),
-
-                _buildSectionTitle('Key Features'),
-                _buildFeature(
-                  title: '[Feature Name]',
-                  description: '[Explanation and Benefits]',
-                ),
-                _buildFeature(
-                  title: '[Feature Name]',
-                  description: '[Explanation and Benefits]',
-                ),
-
-                // _buildSectionTitle('Customer Testimonials'),
-                // _buildTestimonial(
-                //   customerName: 'Customer Name',
-                //   quote: '[Testimonial Quote]',
-                // ),
-
-                // _buildSectionTitle('FAQs'),
-                // _buildFAQ(
-                //   question: '[Question 1]',
-                //   answer: '[Answer]',
-                // ),
-                // _buildFAQ(
-                //   question: '[Question 2]',
-                //   answer: '[Answer]',
-                // ),
-
-                // _buildSectionTitle('Call to Action'),
-                // _buildParagraph('Ready to get started? Sign Up Now or Contact Us.'),
-                // Add buttons or contact information widgets here.
-
-                SizedBox(height: 20.0),
               ],
             ),
-          ),
-          Center(
+            height: 50,
+            width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 80),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    height: 200,
-                    width: 200,
-                    fit: BoxFit.fill,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Talk to Us',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Email: example@gmail.com',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Text(
-                    'Phone: +254 712 345 678',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Text(
-                    'Website: www.example.com',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Text(
-                    'Address: 1234 Example Street, Nairobi, Kenya',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10.0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Contact Us',
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '₹834',
                         style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
+                      ),
+                      Text(
+                        '2 months plan',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    width: 100,
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(primaryColor),
+                      ),
+                      onPressed: openCheckout,
+                      child: const Text(
+                        'Pay Now',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -587,59 +590,6 @@ class Testimonial {
   });
 }
 
-Widget _buildSectionTitle(String title) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
-    child: Text(
-      title,
-      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-    ),
-  );
-}
-
-Widget _buildParagraph(String text) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
-    child: Text(
-      text,
-      style: TextStyle(fontSize: 16.0),
-    ),
-  );
-}
-
-Widget _buildStep(
-    {required int stepNumber,
-    required String title,
-    required String description}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        'Step $stepNumber: $title',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(height: 8.0),
-      Text(description),
-      SizedBox(height: 16.0),
-    ],
-  );
-}
-
-Widget _buildFeature({required String title, required String description}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        title,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(height: 8.0),
-      Text(description),
-      SizedBox(height: 16.0),
-    ],
-  );
-}
-
 Widget _buildTestimonial(
     {required String customerName, required String quote}) {
   return Column(
@@ -660,18 +610,26 @@ Widget _buildTestimonial(
 }
 
 Widget _buildFAQ({required String question, required String answer}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        'Q: $question',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(height: 8.0),
-      Text(
-        'A: $answer',
-      ),
-      SizedBox(height: 16.0),
-    ],
+  return Padding(
+    padding:
+        const EdgeInsets.symmetric(vertical: 8.0), // Add spacing for clarity
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Q: $question',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 5), // Smaller spacing for better visual appeal
+        Text(
+          'A: $answer',
+          style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
+        ),
+      ],
+    ),
   );
 }

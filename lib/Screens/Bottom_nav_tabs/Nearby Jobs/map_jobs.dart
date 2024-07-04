@@ -22,8 +22,12 @@ class NearMapJobs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nearby Jobs'),
+        // leading: IconButton(
+        //   onPressed: () => control.selectedIndex.value = 0,
+        //   icon: const Icon(Icons.arrow_back),
+        // ),
         leading: IconButton(
-          onPressed: () => control.selectedIndex.value = 0,
+          onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:spires_app/Screens/Bottom_nav_tabs/Drawer/programs_screen.dart';
 import 'package:spires_app/Screens/Bottom_nav_tabs/Nearby%20Jobs/map_jobs.dart';
 
 import '../../Constants/exports.dart';
@@ -22,10 +23,11 @@ class MainScreen extends StatelessWidget {
             //   cityName: c.city.value,
             //   isCityWise: false,
             // ),
-            NearMapJobs(),
+            // NearMapJobs(),
+            const ProgramsScreen(),
             const Internship(),
             const Jobs(),
-            const Profile(),
+            // const Profile(),
           ],
         ),
       ),
@@ -60,14 +62,14 @@ class MainScreen extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.my_location,
+                Icons.school,
                 color: Colors.black38,
               ),
               selectedIcon: Icon(
-                Icons.my_location,
+                Icons.school,
                 color: primaryColor,
               ),
-              label: 'Nearby Jobs',
+              label: 'Programs',
             ),
             NavigationDestination(
               icon: Icon(
@@ -91,17 +93,17 @@ class MainScreen extends StatelessWidget {
               ),
               label: 'Jobs',
             ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.person,
-                color: Colors.black38,
-              ),
-              selectedIcon: Icon(
-                Icons.person,
-                color: primaryColor,
-              ),
-              label: 'Profile',
-            ),
+            // NavigationDestination(
+            //   icon: Icon(
+            //     Icons.person,
+            //     color: Colors.black38,
+            //   ),
+            //   selectedIcon: Icon(
+            //     Icons.person,
+            //     color: primaryColor,
+            //   ),
+            //   label: 'Profile',
+            // ),
           ],
         ),
       ),

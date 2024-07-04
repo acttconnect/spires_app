@@ -28,7 +28,7 @@ class _ProfileCardState extends State<ProfileCard> {
     final size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
-      height: 225,
+      height: 218,
       width: size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -51,7 +51,6 @@ class _ProfileCardState extends State<ProfileCard> {
                             color: Colors.white12,
                             style: smallWhiteText,
                           ),
-                          const SizedBox(height: 8),
                           // myButton(
                           //   onPressed: () => launchUrl(Uri.parse(
                           //       'https://spiresrecruit.com/cv/${MyController.id}')),

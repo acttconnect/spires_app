@@ -83,9 +83,9 @@ Widget internshipCard(
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item.internshipTitle!, style: normalBoldText),
+                Text(item.internshipTitle!, style: mediumBoldText),
                 const SizedBox(height: 4),
-                Text(item.admin!.username!, style: normalLightText),
+                Text(item.admin!.username!, style: normalText),
               ],
             ),
           ],
@@ -95,11 +95,11 @@ Widget internshipCard(
           children: [
             Image.asset(homeFilled, height: 16),
             const SizedBox(width: 8),
-            Text(item.internshipType!, style: smallLightText),
+            Text(item.internshipType!, style: smallText),
             const Spacer(),
             const Icon(Icons.location_on, color: primaryColor, size: 16),
             const SizedBox(width: 8),
-            Text('${item.location}', style: smallLightText),
+            Text('${item.location}', style: smallText),
           ],
         ),
         const SizedBox(height: 4),
@@ -107,11 +107,11 @@ Widget internshipCard(
           children: [
             const Icon(Icons.play_circle, color: primaryColor, size: 16),
             const SizedBox(width: 8),
-            Text('Starts Immediately', style: smallLightText),
+            Text('Starts Immediately', style: smallText),
             const Spacer(),
             const Icon(Icons.calendar_month, color: primaryColor, size: 16),
             const SizedBox(width: 8),
-            Text('${item.duration!} Months', style: smallLightText),
+            Text('${item.duration!} Months', style: smallText),
           ],
         ),
         const SizedBox(height: 4),
@@ -119,7 +119,7 @@ Widget internshipCard(
           children: [
             const Icon(Icons.payments, color: primaryColor, size: 16),
             const SizedBox(width: 8),
-            Text('₹${item.stipend!}/month', style: smallLightText),
+            Text('₹${item.stipend!}/month', style: smallText),
           ],
         ),
         const SizedBox(height: 12),
@@ -129,7 +129,7 @@ Widget internshipCard(
               padding: const EdgeInsets.symmetric(
                   vertical: defaultPadding * 0.5, horizontal: defaultPadding),
               color: primaryColor.withOpacity(0.2),
-              child: Text('Internship with job offer', style: xsmallText),
+              child: Text('Internship with job offer', style:xsmallText),
             ),
             const Spacer(),
             InkWell(

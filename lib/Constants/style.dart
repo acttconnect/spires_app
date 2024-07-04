@@ -13,6 +13,7 @@ final xsmallText = TextStyle(
 final smallText = TextStyle(
   fontSize: smallTextsize,
   color: blackColor,
+  fontWeight: FontWeight.w400,
   fontFamily: fontFamily,
 );
 

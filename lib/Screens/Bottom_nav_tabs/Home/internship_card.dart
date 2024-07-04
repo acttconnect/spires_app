@@ -20,13 +20,20 @@ class InternshipCard extends StatelessWidget {
               children: [
                 Text(
                   "Internships",
-                  style: mediumBoldText,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 InkWell(
                   onTap: () => c.selectedIndex.value = 2,
                   child: Text(
                     "View All",
-                    style: smallLightText,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],

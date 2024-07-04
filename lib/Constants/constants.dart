@@ -180,6 +180,11 @@ List<ListTileModel> policyDropdownItems = [
     onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/safety')),
   ),
   ListTileModel(
+    label: 'FAQ\'s',
+    image: Icons.question_answer,
+    onTap: () => Get.to(() => const Faqs()),
+  ),
+  ListTileModel(
     label: 'Terms & Condition',
     image: Icons.gavel,
     onTap: () => launchUrl(Uri.parse('https://spiresrecruit.com/terms-of-use')),

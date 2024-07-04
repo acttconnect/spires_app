@@ -20,13 +20,22 @@ class JobCard extends StatelessWidget {
               children: [
                 Text(
                   "Jobs",
-                  style: mediumBoldText,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
                 InkWell(
                   onTap: () => c.selectedIndex.value = 3,
                   child: Text(
                     "View All",
-                    style: smallLightText,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                      fontFamily: 'Poppins',
+                    ),
                   ),
                 ),
               ],
@@ -57,7 +66,7 @@ class JobCard extends StatelessWidget {
                                     viewportFraction: 1,
                                     height: 256,
                                     autoPlayInterval:
-                                        const Duration(seconds: 8),
+                                    const Duration(seconds: 8),
                                   ),
                                 )
                           : ListView.builder(
@@ -69,7 +78,6 @@ class JobCard extends StatelessWidget {
                     ),
             ),
           ),
-          const SizedBox(height: 8.0)
         ],
       ),
     );
