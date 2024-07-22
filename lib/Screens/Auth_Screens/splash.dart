@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spires_app/Constants/exports.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,8 +15,14 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> navToWelcome() async {
     Future.delayed(
       const Duration(seconds: 2),
-      () =>
-          AuthUtils.getLogin(email: c.authEmail.value, pass: c.authPass.value),
+      () {
+        final isLoggedIn = FirebaseAuth.instance.currentUser!=null;
+        if(isLoggedIn){
+          AuthUtils().signInWithGoogle();
+        }else{
+          AuthUtils.getLogin(email: c.authEmail.value, pass: c.authPass.value);
+        }
+      },
     );
     Future.delayed(const Duration(milliseconds: 200),
         () => setState(() => isSelected = true));

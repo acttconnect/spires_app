@@ -10,6 +10,7 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
+
   File? image;
   pickImageFrom(ImageSource source) async {
     XFile? pickedImg = await ImagePicker().pickImage(source: source);
@@ -23,6 +24,7 @@ class _ProfileCardState extends State<ProfileCard> {
   }
 
   final c = Get.put(MyController());
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -33,7 +35,8 @@ class _ProfileCardState extends State<ProfileCard> {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(profileBanner), fit: BoxFit.cover),
-          color: bannerBgColor),
+          color: bannerBgColor
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,13 +54,6 @@ class _ProfileCardState extends State<ProfileCard> {
                             color: Colors.white12,
                             style: smallWhiteText,
                           ),
-                          // myButton(
-                          //   onPressed: () => launchUrl(Uri.parse(
-                          //       'https://spiresrecruit.com/cv/${MyController.id}')),
-                          //   label: 'Browse more CV',
-                          //   color: Colors.white12,
-                          //   style: smallWhiteText,
-                          // ),
                         ],
                       )
                     : Container(),
@@ -86,13 +82,8 @@ class _ProfileCardState extends State<ProfileCard> {
                             : Container(),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    Text(MyController.userEmail, style: smallWhiteText),
                     Text(MyController.userPhone, style: smallWhiteText),
-                    Row(
-                      children: [
-                        Text(MyController.userEmail, style: smallWhiteText),
-                      ],
-                    ),
                   ],
                 ),
                 IconButton(
@@ -160,7 +151,9 @@ class _ProfileCardState extends State<ProfileCard> {
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(120),
                               child: CachedNetworkImage(
-                                imageUrl: '$imgPath/${c.profileImg.value}',
+                                imageUrl: c.profileImg.value.isURL
+                                    ? c.profileImg.value
+                                    :'$imgPath/${c.profileImg.value}',
                                 width: 120,
                                 height: 120,
                                 fit: BoxFit.cover,
@@ -196,7 +189,9 @@ class _ProfileCardState extends State<ProfileCard> {
         ),
       ),
       child: const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: primaryColor,
+        ),
       ),
     );
   }

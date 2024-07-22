@@ -408,32 +408,60 @@ class ProfileUtils {
     }
   }
 
+  // static Future<void> getOtp(String phone) async {
+  //   final url = '${apiUrl}sendotp?phone_number=$phone';
+  //   c.isotpLoading.value = true;
+  //   final response = await http.post(Uri.parse(url));
+  //   if (response.statusCode == 200) {
+  //     final data = jsonDecode(response.body);
+  //     if (data['error'] == false) {
+  //       c.otp.value = data['otp'].toString();
+  //       Get.to(() => MobileVerify());
+  //       Fluttertoast.showToast(msg: 'OTP sent');
+  //       c.isotpLoading.value = false;
+  //     } else {
+  //       Fluttertoast.showToast(msg: 'Something went wrong');
+  //       c.isotpLoading.value = false;
+  //     }
+  //   } else {
+  //     c.isotpLoading.value = false;
+  //   }
+  // }
+
   static Future<void> getOtp(String phone) async {
     final url = '${apiUrl}sendotp?phone_number=$phone';
     c.isotpLoading.value = true;
-    final response = await http.post(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data['error'] == false) {
-        c.otp.value = data['otp'].toString();
-        Get.to(() => MobileVerify());
-        Fluttertoast.showToast(msg: 'OTP sent');
-        c.isotpLoading.value = false;
+    try {
+      final response = await http.post(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data['error'] == false) {
+          c.otp.value = data['otp'].toString();
+          Get.to(() => MobileVerify());
+          Fluttertoast.showToast(msg: 'OTP sent');
+        } else {
+          Fluttertoast.showToast(msg: 'Something went wrong');
+        }
       } else {
-        Fluttertoast.showToast(msg: 'Something went wrong');
-        c.isotpLoading.value = false;
+        Fluttertoast.showToast(msg: 'Failed to send OTP');
       }
-    } else {
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'An error occurred');
+    } finally {
       c.isotpLoading.value = false;
     }
   }
 
+
   static Future<void> getEmailVerification() async {
     final url = '${apiUrl}SendVerificationMail?user_id=${MyController.id}';
+    print(MyController.id);
     c.isemailLoading.value = true;
     final response = await http.post(Uri.parse(url));
     if (response.statusCode == 200) {
+      print(response.body);
       final data = jsonDecode(response.body);
+      print(data);
       if (data['error'] == false) {
         Get.defaultDialog(
             radius: defaultRadius,

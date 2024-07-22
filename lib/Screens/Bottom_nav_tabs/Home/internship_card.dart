@@ -7,14 +7,13 @@ class InternshipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: defaultMargin),
-      color: primaryColor.withOpacity(0.2),
+    return GestureDetector(
+      onTap: () => c.selectedIndex.value = 3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -22,11 +21,11 @@ class InternshipCard extends StatelessWidget {
                   "Internships",
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 InkWell(
-                  onTap: () => c.selectedIndex.value = 2,
+                  onTap: () => c.selectedIndex.value = 3,
                   child: Text(
                     "View All",
                     style: TextStyle(

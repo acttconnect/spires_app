@@ -98,24 +98,25 @@ class ProgressCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(8, 8, 0, 8),
       width: size.width * 0.3,
       child: Obx(
-        () => Column(
+            () => Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Text('+ 15%', style: xsmallGreenText),
+              child: Text(
+                '+ 15%',
+                style: xsmallGreenText,
+              ),
             ),
             c.isPhoneVerified.value || MyController.veriPhone == '1'
                 ? CircleAvatar(
-                    backgroundColor: Colors.green.withOpacity(0.8),
-                    child:
-                        const Icon(Icons.verified, color: whiteColor, size: 20),
-                  )
+              backgroundColor: Colors.green.withOpacity(0.8),
+              child: const Icon(Icons.verified, color: whiteColor, size: 20),
+            )
                 : CircleAvatar(
-                    backgroundColor: primaryColor.withOpacity(0.1),
-                    child: const Icon(Icons.phone_android,
-                        color: primaryColor, size: 20),
-                  ),
+              backgroundColor: primaryColor.withOpacity(0.1),
+              child: const Icon(Icons.phone_android, color: primaryColor, size: 20),
+            ),
             const Spacer(),
             Text(
               'Recruiters contact verified numbers',
@@ -125,47 +126,88 @@ class ProgressCard extends StatelessWidget {
             const Spacer(),
             c.isPhoneVerified.value || MyController.veriPhone == '1'
                 ? Container(
-                    height: 20,
-                    width: size.width * 0.2,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: borderRadius,
-                    ),
-                    child: Text(
-                      'Verified',
-                      textAlign: TextAlign.center,
-                      style: smallWhiteText,
-                    ),
-                  )
+              height: 20,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: borderRadius,
+              ),
+              child: Text(
+                'Verified',
+                textAlign: TextAlign.center,
+                style: smallWhiteText,
+              ),
+            )
                 : InkWell(
-                    onTap: () => ProfileUtils.getOtp(MyController.userPhone),
-                    child: Obx(
-                      () => c.isotpLoading.value
-                          ? const SizedBox(
-                              height: 25,
-                              width: 25,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Container(
-                              height: 20,
-                              width: size.width * 0.2,
-                              decoration: BoxDecoration(
-                                color: primaryColor.withOpacity(0.2),
-                                borderRadius: borderRadius,
-                              ),
-                              child: Text(
-                                'Verify',
-                                textAlign: TextAlign.center,
-                                style: smallColorText,
-                              ),
-                            ),
-                    ),
-                  )
+              onTap: () {
+                _showPhoneNumberDialog(Get.context!);
+              },
+              child: Obx(
+                    () => c.isotpLoading.value
+                    ? const SizedBox(
+                  height: 20,
+                  width: 25,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                )
+                    : Container(
+                  height: 20,
+                  width: size.width * 0.2,
+                  decoration: BoxDecoration(
+                    color: primaryColor.withOpacity(0.2),
+                    borderRadius: borderRadius,
+                  ),
+                  child: Text(
+                    'Verify',
+                    textAlign: TextAlign.center,
+                    style: smallColorText,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+
+  void _showPhoneNumberDialog(BuildContext context) {
+    final TextEditingController phoneController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Enter Phone Number'),
+          content: TextField(
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            decoration: const InputDecoration(hintText: 'Enter phone number'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final phoneNumber = phoneController.text.trim();
+                if (phoneNumber.isNotEmpty) {
+                  MyController.userPhone = phoneNumber;
+                  Navigator.of(context).pop();
+                  await ProfileUtils.getOtp(MyController.userPhone);
+                } else {
+                  Fluttertoast.showToast(msg: 'Please enter a phone number');
+                }
+              },
+              child: const Text('Send OTP'),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -222,7 +264,7 @@ class ProgressCard extends StatelessWidget {
                     child: Obx(
                       () => c.isemailLoading.value
                           ? const SizedBox(
-                              height: 25,
+                              height: 20,
                               width: 25,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,

@@ -1,14 +1,29 @@
-import '../../Constants/exports.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class SignUpScreen extends StatelessWidget {
+import '../../Constants/exports.dart';
+import '../Main_Screens/main_screen.dart';
+
+class SignUpScreen extends StatefulWidget {
   SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController fNameController = TextEditingController();
+
   final TextEditingController lNameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController mobileController = TextEditingController();
+
   final TextEditingController passController = TextEditingController();
+
   final GlobalKey<FormState> signInkey = GlobalKey<FormState>();
+
   final c = Get.put(MyController());
 
   @override
@@ -62,10 +77,28 @@ class SignUpScreen extends StatelessWidget {
                             iconData: Icons.lock),
                         const SizedBox(height: defaultPadding),
                         signupButton(),
-                        // const SizedBox(height: defaultPadding),
-                        // signupwithGoogle(),
-                        // const SizedBox(height: defaultPadding),
+
                         alreadyHaveAc(),
+                        // Container(
+                        //   child: _user == null
+                        //       ? ElevatedButton(
+                        //     onPressed: _signInWithGoogle,
+                        //     child: Text('Sign in with Google'),
+                        //   )
+                        //       : Container(
+                        //     child: Column(
+                        //       children: [
+                        //         Image.network(_user!.photoURL!),
+                        //         Text(_user!.displayName!),
+                        //         Text(_user!.email!),
+                        //         ElevatedButton(
+                        //           onPressed: _signOut,
+                        //           child: Text('Sign out'),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

@@ -57,12 +57,22 @@ class JobDetails extends StatelessWidget {
                     width: size.width * 0.55,
                     child: Text(
                       item.jobTitle!,
-                      style: mediumBoldText,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(item.admin!.username!, style: normalLightText),
+                  Text(item.admin!.username!, style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  ),),
                 ],
               ),
               // CachedNetworkImage(
@@ -76,12 +86,22 @@ class JobDetails extends StatelessWidget {
             children: [
               Image.asset(homeFilled, height: 16),
               const SizedBox(width: 8),
-              Text(item.jobType!, style: smallLightText),
+              Text(item.jobType!, style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),),
               const Spacer(),
               const Icon(Icons.payments, color: primaryColor, size: 16),
               const SizedBox(width: 8),
               Text('₹${int.parse(item.salary!) * 12} p.a.',
-                  style: smallLightText),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  ),),
             ],
           ),
           const SizedBox(height: 4),
@@ -94,7 +114,12 @@ class JobDetails extends StatelessWidget {
               const Spacer(),
               const Icon(Icons.location_on, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text(item.location!, style: smallLightText),
+              Text(item.location!, style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),),
             ],
           ),
           const SizedBox(height: 12),
@@ -104,7 +129,12 @@ class JobDetails extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: defaultPadding * 0.5, horizontal: defaultPadding),
                 color: primaryColor.withOpacity(0.2),
-                child: Text('Job', style: xsmallText),
+                child: Text('Job', style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: primaryColor,
+                ),),
               ),
               const Spacer(),
               c.isJobSaved.value
@@ -138,7 +168,12 @@ class JobDetails extends StatelessWidget {
         children: [
           Text(
             'About ${item.admin!.username!.toUpperCase()}',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           InkWell(
             onTap: () async {
@@ -163,28 +198,53 @@ class JobDetails extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             'About the Job',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           const SizedBox(height: 4),
           HtmlWidget(item.aboutJob!),
           const SizedBox(height: 8),
           Text(
             'Skills Required',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           const SizedBox(height: 4),
-          Text(item.skills!, style: smallLightText),
+          Text(item.skills!, style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
+            color: Colors.black,
+          ),),
           const SizedBox(height: 8),
           Text(
             'Salary',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           const SizedBox(height: 4),
           Row(
             children: [
               Text(
                 'Probabtion:',
-                style: normalBoldText,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'Poppins',
+                )
               ),
               const SizedBox(width: 8),
               InkWell(
@@ -202,31 +262,70 @@ class JobDetails extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text('Duration: ${item.probationDuration!} Months',
-              style: smallLightText),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+          ),
           const SizedBox(height: 4),
           Text('Salary during probabtion: ₹${item.probationSalary!}/month',
-              style: smallLightText),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+          ),
           const SizedBox(height: 4),
           Text(
             'After Probabtion',
-            style: normalBoldText,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           const SizedBox(height: 4),
           Text('Annual CTC: ${int.parse(item.salary!) * 12} p.a.',
-              style: smallLightText),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+          ),
           const SizedBox(height: 4),
           Text(
             'Numbers of openings',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           const SizedBox(height: 4),
-          Text(item.openings!.toString(), style: smallLightText),
+          Text(item.openings!.toString(), style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
+            color: Colors.black,
+          ),),
           const SizedBox(height: 8),
           Row(
             children: [
               const Icon(Icons.hourglass_top, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text('Posted on ${item.postDate}', style: smallLightText),
+              Text('Posted on ${item.postDate}', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+              ),
             ],
           ),
           const SizedBox(height: 4),
@@ -235,7 +334,13 @@ class JobDetails extends StatelessWidget {
               const Icon(Icons.timer, color: primaryColor, size: 16),
               const SizedBox(width: 8),
               Text('Last date to apply : ${item.lastDate}',
-                  style: smallLightText),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  ),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -246,7 +351,12 @@ class JobDetails extends StatelessWidget {
                   color: Colors.green,
                   child: Center(
                     child: Text('Already Applied',
-                        style: normalWhiteText, textAlign: TextAlign.center),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                        ), textAlign: TextAlign.center),
                   ),
                 )
               : ElevatedButton(
@@ -255,7 +365,13 @@ class JobDetails extends StatelessWidget {
                         ? JobsUtils.applyForJob(jobId: item.id!.toInt())
                         : Container();
                   },
-                  child: Text('Apply Now', style: normalWhiteText),
+                  child: Text('Apply Now', style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Poppins',
+                  ),
+                  ),
                 ),
           const SizedBox(height: 8),
         ],

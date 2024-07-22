@@ -24,7 +24,8 @@ class MobileVerify extends StatelessWidget {
             : Container(
                 margin: const EdgeInsets.symmetric(
                     horizontal: defaultMargin * 2,
-                    vertical: defaultPadding * 12),
+                    vertical: defaultPadding * 12
+                ),
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 2),
                 decoration: BoxDecoration(
@@ -50,6 +51,7 @@ class MobileVerify extends StatelessWidget {
                       const SizedBox(height: 25),
                       Text('+91 ${MyController.userPhone}', style: mediumText),
                       const SizedBox(height: 15),
+
                       Pinput(
                         controller: pinController,
                         defaultPinTheme: defaultPinTheme,
@@ -59,6 +61,7 @@ class MobileVerify extends StatelessWidget {
                         },
                         onSubmitted: (value) => c.myotp.value = value,
                       ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

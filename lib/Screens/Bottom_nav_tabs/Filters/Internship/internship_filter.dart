@@ -33,7 +33,13 @@ class InternshipFilter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Monthly Stipend'.toUpperCase(), style: normalText),
+                    Text('Monthly Stipend'.toUpperCase(), style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                    ),
                     const SizedBox(height: 8),
                     GridView.builder(
                       shrinkWrap: true,
@@ -57,7 +63,13 @@ class InternshipFilter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('SELECT CITY', style: normalText),
+                    Text('SELECT CITY', style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                    ),
                     const SizedBox(height: 8),
                     Obx(
                       () => cc.isDataLoading.value
@@ -136,7 +148,13 @@ class InternshipFilter extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text('INTERNSHIP TYPE', style: normalText),
+              child: Text('INTERNSHIP TYPE', style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                fontFamily: 'Poppins',
+              ),
+            ),
             ),
             const SizedBox(height: 8),
             Row(

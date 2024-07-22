@@ -33,7 +33,13 @@ class JobFilter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('ANNUAL SALARY', style: normalText),
+                    Text('ANNUAL SALARY', style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                    ),
                     const SizedBox(height: 8),
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -60,7 +66,13 @@ class JobFilter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('SELECT CITY (Choose Atleast one)', style: normalText),
+                    Text('SELECT CITY (Choose Atleast one)', style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      fontFamily: 'Poppins',
+                ),
+                    ),
                     const SizedBox(height: 8),
                     Obx(
                       () => cc.isDataLoading.value
@@ -111,7 +123,13 @@ class JobFilter extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text('JOB TYPE', style: normalText),
+              child: Text('JOB TYPE', style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                fontFamily: 'Poppins',
+              ),
+              ),
             ),
             const SizedBox(height: 8),
             Row(

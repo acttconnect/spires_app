@@ -7,14 +7,13 @@ class JobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.only(top: defaultMargin),
-      color: primaryColor.withOpacity(0.3),
+    return GestureDetector(
+      onTap: () => c.selectedIndex.value = 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -22,12 +21,12 @@ class JobCard extends StatelessWidget {
                   "Jobs",
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'Poppins',
                   ),
                 ),
                 InkWell(
-                  onTap: () => c.selectedIndex.value = 3,
+                  onTap: () => c.selectedIndex.value = 4,
                   child: Text(
                     "View All",
                     style: TextStyle(
@@ -43,7 +42,7 @@ class JobCard extends StatelessWidget {
           ),
           SizedBox(
             height: 240,
-            width: size.width,
+            width: double.infinity,
             child: Obx(
               () => c.isJobLoading.value
                   ? cardShimmer(size)
@@ -63,6 +62,7 @@ class JobCard extends StatelessWidget {
                                       jobCard(snapshot, index, size, false),
                                   options: CarouselOptions(
                                     autoPlay: true,
+                                    // enlargeCenterPage: true,
                                     viewportFraction: 1,
                                     height: 256,
                                     autoPlayInterval:

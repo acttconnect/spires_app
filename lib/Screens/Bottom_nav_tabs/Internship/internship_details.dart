@@ -51,9 +51,21 @@ class InternshipDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(item.internshipTitle!, style: normalBoldText),
+                  Text(item.internshipTitle!, style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text(item.admin!.username!, style: normalLightText),
+                  Text(item.admin!.username!, style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  ),
+                  ),
                 ],
               ),
             ],
@@ -63,11 +75,22 @@ class InternshipDetails extends StatelessWidget {
             children: [
               Image.asset(homeFilled, height: 16),
               const SizedBox(width: 8),
-              Text(item.internshipType!, style: smallLightText),
+              Text(item.internshipType!, style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ),
+              ),
               const Spacer(),
               const Icon(Icons.location_on, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text('${item.location}', style: smallLightText),
+              Text('${item.location}', style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ), ),
             ],
           ),
           const SizedBox(height: 4),
@@ -75,11 +98,21 @@ class InternshipDetails extends StatelessWidget {
             children: [
               const Icon(Icons.play_circle, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text('Starts Immediately', style: smallLightText),
+              const Text('Starts Immediately', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ), ),
               const Spacer(),
               const Icon(Icons.calendar_month, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text('${item.duration!} Months', style: smallLightText),
+              Text('${item.duration!} Months', style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ), ),
             ],
           ),
           const SizedBox(height: 4),
@@ -87,7 +120,12 @@ class InternshipDetails extends StatelessWidget {
             children: [
               const Icon(Icons.payments, color: primaryColor, size: 16),
               const SizedBox(width: 8),
-              Text('₹${item.stipend!}/month', style: smallLightText),
+              Text('₹${item.stipend!}/month', style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ), ),
             ],
           ),
           const SizedBox(height: 12),
@@ -97,7 +135,12 @@ class InternshipDetails extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: defaultPadding * 0.5, horizontal: defaultPadding),
                 color: primaryColor.withOpacity(0.2),
-                child: Text('Internship with job offer', style: xsmallText),
+                child: const Text('Internship with job offer', style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'Poppins',
+                ), ),
               ),
               const Spacer(),
               c.isInternshipSaved.value
@@ -133,7 +176,12 @@ class InternshipDetails extends StatelessWidget {
         children: [
           Text(
             'About ${item.admin!.username!.toUpperCase()}',
-            style: mediumBoldText,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           InkWell(
             onTap: () async {
@@ -153,41 +201,83 @@ class InternshipDetails extends StatelessWidget {
           ),
           HtmlWidget(item.admin!.description!),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'About the Internship',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           HtmlWidget(item.aboutInternship!),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Skills & Qualification',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
-          Text(item.skill!, style: smallLightText),
+          Text(item.skill!, style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: 'Poppins',
+          )),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Who can apply',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           HtmlWidget(item.whoCanApply!),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Perks',
-            style: mediumBoldText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
           Text(item.perks!, style: smallLightText),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Numbers of openings',
-            style: mediumBoldText,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+            )
           ),
-          Text(item.openings!.toString(), style: smallLightText),
+          Text(item.openings!.toString(), style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: 'Poppins',
+          )),
           const SizedBox(height: 8),
           Row(
             children: [
               const Icon(Icons.hourglass_top, size: 16, color: lightBlackColor),
               const SizedBox(width: 8),
-              Text('Posted on ${item.startFrom}', style: smallLightText),
+              Text('Posted on ${item.startFrom}',
+                style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+                fontFamily: 'Poppins',
+              ),
+              ),
             ],
           ),
           Row(
@@ -195,18 +285,29 @@ class InternshipDetails extends StatelessWidget {
               const Icon(Icons.timer, size: 16, color: lightBlackColor),
               const SizedBox(width: 8),
               Text('Last date to Apply : ${item.lastDate}',
-                  style: smallLightText),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  ),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           c.isInternshipApplied.value
-              ? MyContainer(
-                  padding: const EdgeInsets.all(defaultRadius),
+              ? const MyContainer(
+                  padding: EdgeInsets.all(defaultRadius),
                   width: double.infinity,
                   color: Colors.green,
                   child: Center(
                     child: Text('Already Applied',
-                        style: normalWhiteText, textAlign: TextAlign.center),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: whiteColor,
+                            fontFamily: 'Poppins'
+                        ), textAlign: TextAlign.center),
                   ),
                 )
               : ElevatedButton(
@@ -214,9 +315,14 @@ class InternshipDetails extends StatelessWidget {
                       ? InternshipUtils.applyForInternship(
                           internId: item.id!.toInt())
                       : Container(),
-                  child: Text('Apply Now', style: normalWhiteText),
+                  child: const Text('Apply Now', style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                    fontFamily: 'Poppins',
+                  ),),
                 ),
-          const SizedBox(height: 8)
+          const SizedBox(height: 8),
         ],
       ),
     );

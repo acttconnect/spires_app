@@ -63,93 +63,153 @@ class _InternshipState extends State<Internship> {
 }
 
 Widget internshipCard(
-    AsyncSnapshot<InternshipModel> snapshot, int index, Size size) {
+    AsyncSnapshot<InternshipModel> snapshot,
+    int index,
+    Size size,
+    ) {
   final item = snapshot.data!.data![index];
-  return Container(
-    padding: const EdgeInsets.all(defaultPadding),
-    margin: const EdgeInsets.only(
-        bottom: defaultMargin, left: defaultMargin, right: defaultMargin),
-    decoration: BoxDecoration(
-      color: whiteColor,
+  return Card(
+    color: whiteColor,
+    elevation: 4,
+    margin: const EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
+    shape: RoundedRectangleBorder(
       borderRadius: borderRadius,
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        activelyHiring(),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(item.internshipTitle!, style: mediumBoldText),
-                const SizedBox(height: 4),
-                Text(item.admin!.username!, style: normalText),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Image.asset(homeFilled, height: 16),
-            const SizedBox(width: 8),
-            Text(item.internshipType!, style: smallText),
-            const Spacer(),
-            const Icon(Icons.location_on, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text('${item.location}', style: smallText),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            const Icon(Icons.play_circle, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text('Starts Immediately', style: smallText),
-            const Spacer(),
-            const Icon(Icons.calendar_month, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text('${item.duration!} Months', style: smallText),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            const Icon(Icons.payments, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text('₹${item.stipend!}/month', style: smallText),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            MyContainer(
-              padding: const EdgeInsets.symmetric(
-                  vertical: defaultPadding * 0.5, horizontal: defaultPadding),
-              color: primaryColor.withOpacity(0.2),
-              child: Text('Internship with job offer', style:xsmallText),
-            ),
-            const Spacer(),
-            InkWell(
-              onTap: () => shareInternships(item.id!.toInt()),
-              child: const Icon(Icons.share, size: 20),
-            ),
-          ],
-        ),
-        const Divider(
-          color: Colors.black26,
-        ),
-        InkWell(
-          onTap: () =>
-              Get.to(() => InternshipDetails(snapshot: snapshot, index: index)),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text('View Details', style: normalColorText),
+    child: Padding(
+      padding: const EdgeInsets.all(defaultPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          activelyHiring(),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: size.width * 0.55,
+                    child: Text(
+                      item.internshipTitle!,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(item.admin!.username!, style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  )),
+                ],
+              ),
+              InkWell(
+                onTap: () => shareInternships(item.id!.toInt()),
+                child: const Icon(Icons.share, size: 20),
+              ),
+            ],
           ),
-        )
-      ],
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Image.asset(homeFilled, height: 16),
+              const SizedBox(width: 8),
+              Text(item.internshipType!, style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              )),
+              const Spacer(),
+              const Icon(Icons.location_on, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text('${item.location}', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              )),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              const Icon(Icons.play_circle, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text('Starts Immediately', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              )),
+              const Spacer(),
+              const Icon(Icons.calendar_month, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text('${item.duration!} Months', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              )),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              const Icon(Icons.payments, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text('₹${item.stipend!}/month', style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              )),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              MyContainer(
+                padding: const EdgeInsets.symmetric(
+                  vertical: defaultPadding * 0.5,
+                  horizontal: defaultPadding,
+                ),
+                color: primaryColor.withOpacity(0.2),
+                child: Text('Internship with job offer', style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                )),
+              ),
+              const Spacer(),
+              // Example of share icon; adjust as per your design
+              InkWell(
+                onTap: () => shareInternships(item.id!.toInt()),
+                child: const Icon(Icons.share, size: 20),
+              ),
+            ],
+          ),
+          const Divider(
+            height: 10,
+              color: Colors.black26),
+          InkWell(
+            onTap: () => Get.to(() => InternshipDetails(snapshot: snapshot, index: index)),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text('View Details', style: normalColorText),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
+

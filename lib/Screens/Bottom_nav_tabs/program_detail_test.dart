@@ -547,7 +547,7 @@ class _ProgramDetailTestState extends State<ProgramDetailTest>
                     ],
                   ),
                   Container(
-                    width: 100,
+                    width: 120,
                     height: 40,
                     child: ElevatedButton(
                       style: ButtonStyle(
@@ -564,7 +564,13 @@ class _ProgramDetailTestState extends State<ProgramDetailTest>
                       child: const Text(
                         'Pay Now',
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'
+                            
+                        ),
                       ),
                     ),
                   ),

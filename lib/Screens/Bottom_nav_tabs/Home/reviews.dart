@@ -8,7 +8,7 @@ class Reviews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor.withOpacity(0.2),
+      color: primaryColor.withOpacity(0.5),
       child: FutureBuilder<ReviewModel>(
         future: HomeUtils.getReviews(),
         builder: (context, snapshot) => snapshot.hasData
@@ -16,13 +16,13 @@ class Reviews extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                        defaultPadding, defaultPadding, defaultPadding, 0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: defaultPadding, vertical: 8),
                     child: Text(
                       "Reviews",
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -37,7 +37,7 @@ class Reviews extends StatelessWidget {
                           options: CarouselOptions(
                             autoPlay: false,
                             height: 270,
-                            viewportFraction: 0.7,
+                            viewportFraction: 0.8,
                             autoPlayInterval:
                                 const Duration(milliseconds: 2000),
                           ),
@@ -51,28 +51,52 @@ class Reviews extends StatelessWidget {
 
   reviewCard(AsyncSnapshot<ReviewModel> snapshot, int index) {
     final item = snapshot.data!.data![index];
-    return MyContainer(
-      margin: const EdgeInsets.all(defaultMargin),
-      color: whiteColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const SizedBox(height: 8),
-          CircleAvatar(
-            radius: 45,
-            backgroundImage:
-                CachedNetworkImageProvider('$imgPath/${item.image!}'),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      child: Card(
+        color: whiteColor,
+        elevation: 4,
+        child: MyContainer(
+          margin: const EdgeInsets.all(defaultMargin),
+          color: whiteColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(height: 8),
+              CircleAvatar(
+                radius: 45,
+                backgroundImage:
+                    CachedNetworkImageProvider('$imgPath/${item.image!}'),
+              ),
+              Text(item.name!, style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+              ),
+              ),
+              Text(item.date!, style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+              ),
+              ),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                child: HtmlWidget(
+                  item.description!,
+                  textStyle: TextStyle(
+                    fontSize: 12,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  ),
+                ),
+              )
+            ],
           ),
-          Text(item.name!, style: normalBoldText),
-          Text(item.date!, style: smallText),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            child: HtmlWidget(
-              item.description!,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

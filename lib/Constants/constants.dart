@@ -251,7 +251,8 @@ List<ListTileModel> myProfileList = [
       label: 'Update Password',
       image: Icons.update,
       onTap: () => Get.to(() => const UpdatePassword(),
-          transition: Transition.rightToLeftWithFade)),
+          transition: Transition.rightToLeftWithFade)
+  ),
   ListTileModel(
     label: 'Logout',
     image: Icons.logout,
@@ -287,7 +288,12 @@ logoutfn() {
     middleText: 'Are you sure you want to logout?',
     confirmTextColor: whiteColor,
     confirm: myButton(
-      onPressed: () => SharedPrefs.logout(),
+      onPressed: () {
+        SharedPrefs.logout();
+        AuthUtils().signOut();
+        Get.offAll(() => LoginScreen()
+        );
+      },
       label: 'Logout',
       color: primaryColor,
       style: normalWhiteText,
@@ -311,137 +317,124 @@ cardShimmer(Size size) {
       borderRadius: borderRadius,
     ),
     width: size.width,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Shimmer.fromColors(
-          highlightColor: Colors.grey.shade300,
-          baseColor: whiteColor,
-          child: Container(
-            height: 12,
-            width: 120,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: borderRadius,
+    child: Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Shimmer.fromColors(
+            highlightColor: Colors.grey.shade300,
+            baseColor: whiteColor,
+            child: Container(
+              height: 12,
+              width: 120,
+              decoration: BoxDecoration(
+                color: whiteColor,
+                borderRadius: borderRadius,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Shimmer.fromColors(
-                  highlightColor: Colors.grey.shade300,
-                  baseColor: whiteColor,
-                  child: const MyContainer(
-                    height: 12,
-                    width: 100,
-                    color: whiteColor,
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Shimmer.fromColors(
+                    highlightColor: Colors.grey.shade300,
+                    baseColor: whiteColor,
+                    child: const MyContainer(
+                      height: 12,
+                      width: 100,
+                      color: whiteColor,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Shimmer.fromColors(
-                  highlightColor: Colors.grey.shade300,
-                  baseColor: whiteColor,
-                  child: const MyContainer(
-                    height: 12,
-                    width: 75,
-                    color: whiteColor,
+                  const SizedBox(height: 4),
+                  Shimmer.fromColors(
+                    highlightColor: Colors.grey.shade300,
+                    baseColor: whiteColor,
+                    child: const MyContainer(
+                      height: 12,
+                      width: 75,
+                      color: whiteColor,
+                    ),
                   ),
+                ],
+              ),
+              Shimmer.fromColors(
+                highlightColor: Colors.grey.shade300,
+                baseColor: whiteColor,
+                child: const MyContainer(
+                  height: 20,
+                  width: 40,
+                  color: whiteColor,
                 ),
-              ],
-            ),
-            Shimmer.fromColors(
-              highlightColor: Colors.grey.shade300,
-              baseColor: whiteColor,
-              child: const MyContainer(
-                height: 20,
-                width: 40,
-                color: whiteColor,
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Image.asset(homeFilled, height: 16),
-            const SizedBox(width: 8),
-            Shimmer.fromColors(
-              highlightColor: Colors.grey.shade300,
-              baseColor: whiteColor,
-              child: const MyContainer(
-                height: 12,
-                width: 50,
-                color: whiteColor,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            const Icon(Icons.play_circle, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Shimmer.fromColors(
-              highlightColor: Colors.grey.shade300,
-              baseColor: whiteColor,
-              child: const MyContainer(
-                height: 12,
-                width: 50,
-                color: whiteColor,
-              ),
-            ),
-            const SizedBox(width: 24),
-            const Icon(Icons.calendar_month, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Shimmer.fromColors(
-              highlightColor: Colors.grey.shade300,
-              baseColor: whiteColor,
-              child: const MyContainer(
-                height: 12,
-                width: 50,
-                color: whiteColor,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            const Icon(Icons.payments, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Shimmer.fromColors(
-              highlightColor: Colors.grey.shade300,
-              baseColor: whiteColor,
-              child: const MyContainer(
-                height: 12,
-                width: 50,
-                color: whiteColor,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Shimmer.fromColors(
-          highlightColor: Colors.grey.shade300,
-          baseColor: whiteColor,
-          child: const MyContainer(
-            height: 12,
-            width: 50,
-            color: whiteColor,
+            ],
           ),
-        ),
-        const Divider(
-          color: Colors.black26,
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Shimmer.fromColors(
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Image.asset(homeFilled, height: 16),
+              const SizedBox(width: 8),
+              Shimmer.fromColors(
+                highlightColor: Colors.grey.shade300,
+                baseColor: whiteColor,
+                child: const MyContainer(
+                  height: 12,
+                  width: 50,
+                  color: whiteColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              const Icon(Icons.play_circle, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Shimmer.fromColors(
+                highlightColor: Colors.grey.shade300,
+                baseColor: whiteColor,
+                child: const MyContainer(
+                  height: 12,
+                  width: 50,
+                  color: whiteColor,
+                ),
+              ),
+              const SizedBox(width: 24),
+              const Icon(Icons.calendar_month, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Shimmer.fromColors(
+                highlightColor: Colors.grey.shade300,
+                baseColor: whiteColor,
+                child: const MyContainer(
+                  height: 12,
+                  width: 50,
+                  color: whiteColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              const Icon(Icons.payments, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Shimmer.fromColors(
+                highlightColor: Colors.grey.shade300,
+                baseColor: whiteColor,
+                child: const MyContainer(
+                  height: 12,
+                  width: 50,
+                  color: whiteColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Shimmer.fromColors(
             highlightColor: Colors.grey.shade300,
             baseColor: whiteColor,
             child: const MyContainer(
@@ -450,8 +443,23 @@ cardShimmer(Size size) {
               color: whiteColor,
             ),
           ),
-        ),
-      ],
+          const Divider(
+            color: Colors.black26,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Shimmer.fromColors(
+              highlightColor: Colors.grey.shade300,
+              baseColor: whiteColor,
+              child: const MyContainer(
+                height: 12,
+                width: 50,
+                color: whiteColor,
+              ),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }

@@ -17,7 +17,7 @@ class FeaturedCategory extends StatelessWidget {
             "Featured Category",
             style: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
               fontFamily: 'Poppins',
             ),
           ),

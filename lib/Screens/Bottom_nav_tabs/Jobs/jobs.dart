@@ -62,96 +62,144 @@ class _JobsState extends State<Jobs> {
 }
 
 Widget jobCard(
-    AsyncSnapshot<JobModel> snapshot, int index, Size size, bool isNearby) {
+    AsyncSnapshot<JobModel> snapshot,
+    int index,
+    Size size,
+    bool isNearby
+    ) {
   final item = snapshot.data!.data![index];
-  return Container(
-    padding: const EdgeInsets.all(defaultPadding),
-    margin: const EdgeInsets.only(
-        bottom: defaultMargin, left: defaultMargin, right: defaultMargin),
-    decoration: BoxDecoration(
-      color: whiteColor,
+  return Card(
+    color: whiteColor,
+    elevation: 4,
+    margin: const EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 8),
+    shape: RoundedRectangleBorder(
       borderRadius: borderRadius,
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        activelyHiring(),
-        const SizedBox(height: 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: size.width * 0.55,
-                  child: Text(
-                    item.jobTitle!,
-                    style: mediumBoldText,
-                    overflow: TextOverflow.ellipsis,
+    child: Padding(
+      padding: const EdgeInsets.all(defaultPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          activelyHiring(),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: size.width * 0.55,
+                    child: Text(
+                      item.jobTitle!,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(item.admin!.username!, style: normalText),
-              ],
-            ),
-            // CachedNetworkImage(
-            //     imageUrl: '$imgPath/${item.admin!.logo!}',
-            //     height: 65,
-            //     width: 65),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Image.asset(homeFilled, height: 16),
-            const SizedBox(width: 8),
-            Text(item.jobType!, style: smallText),
-            const Spacer(),
-            const Icon(Icons.payments, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text('₹${int.parse(item.salary!) * 12} p.a.',
-                style: smallText),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Image.asset(jobsfilled, height: 16),
-            const SizedBox(width: 8),
-            Text('${item.experience}+ years experience', style: smallText),
-            const Spacer(),
-            const Icon(Icons.location_on, color: primaryColor, size: 16),
-            const SizedBox(width: 8),
-            Text(item.location!, style: smallText),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            MyContainer(
-              padding: const EdgeInsets.symmetric(
-                  vertical: defaultPadding * 0.5, horizontal: defaultPadding),
-              color: primaryColor.withOpacity(0.2),
-              child: Text('Job', style: xsmallText),
-            ),
-            const Spacer(),
-            InkWell(
-              onTap: () => shareJobs(item.id!.toInt()),
-              child: const Icon(Icons.share, size: 20),
-            )
-          ],
-        ),
-        const Divider(color: Colors.black26),
-        InkWell(
-          onTap: () =>
-              Get.to(() => JobDetails(snapshot: snapshot, index: index)),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text('View Details', style: normalColorText),
+                  const SizedBox(height: 4),
+                  Text(item.admin!.username!, style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                  ),
+                  ),
+                ],
+              ),
+              // Uncomment and update the below line if using CachedNetworkImage
+              // CachedNetworkImage(
+              //     imageUrl: '$imgPath/${item.admin!.logo!}',
+              //     height: 65,
+              //     width: 65),
+            ],
           ),
-        )
-      ],
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Image.asset(homeFilled, height: 16),
+              const SizedBox(width: 8),
+              Text(item.jobType!, style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+              ),
+              const Spacer(),
+              const Icon(Icons.payments, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text('₹${int.parse(item.salary!) * 12} p.a.', style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Image.asset(jobsfilled, height: 16),
+              const SizedBox(width: 8),
+              Text('${item.experience}+ years experience', style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+              ),
+              const Spacer(),
+              const Icon(Icons.location_on, color: primaryColor, size: 16),
+              const SizedBox(width: 8),
+              Text(item.location!, style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+                color: Colors.black,
+              ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              MyContainer(
+                padding: const EdgeInsets.symmetric(
+                  vertical: defaultPadding * 0.5,
+                  horizontal: defaultPadding,
+                ),
+                color: primaryColor.withOpacity(0.2),
+                child: const Text('Job', style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                ),
+                ),
+              ),
+              const Spacer(),
+              InkWell(
+                onTap: () => shareJobs(item.id!.toInt()),
+                child: const Icon(Icons.share, size: 20),
+              ),
+            ],
+          ),
+          const Divider(color: Colors.black26),
+          InkWell(
+            onTap: () => Get.to(() => JobDetails(snapshot: snapshot, index: index)),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text('View Details', style: normalColorText),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
