@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "922688829251",
+    "project_id": "spires-2bdda",
+    "storage_bucket": "spires-2bdda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922688829251:android:7e1990fe95621ce0d7e1f6",
+        "android_client_info": {
+          "package_name": "com.atc.spires_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922688829251-d9jvl3j2am1njc74l96pbm0u32670086.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atc.spires_app",
+            "certificate_hash": "0b2a510060c6ea870c4645dcce7a1dc3d998678f"
+          }
+        },
+        {
+          "client_id": "922688829251-32rn1qqi0q17b51h9l8a4o84gsa3j8jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOjg3aE5OSlV6oAhfYsWJ8aYSLfjfysrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922688829251-32rn1qqi0q17b51h9l8a4o84gsa3j8jl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "922688829251-rp5r9avg0htb7tfmo3764ghgr867oct6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.spiresApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
